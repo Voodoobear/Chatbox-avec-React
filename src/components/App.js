@@ -1,11 +1,19 @@
 import React from 'react';
 import Formulaire from './Formulaire';
-import Messages from './Messages';
+import Message from './Messages';
+import base from '../base';
 
 class App extends React.Component {
 
     state = {
         messages: {}
+    }
+
+    componentWillMOunt() {
+        this.ref = base.syncState('/', {
+            context: this,
+            state: 'messages'
+        });
     }
 
     addMessage = message => {
@@ -19,11 +27,17 @@ class App extends React.Component {
     }; 
 
     render() {
+
+        const messages = Object
+            .keys(this.state.messages)
+            .map(key => <Message  key={key} details={this.state.messages[key]} />)
+        ;
+
         return (
            <div className="box">
                <div>
                    <div className="messages">
-                   <Messages pseudo={this.props.params.pseudo} />
+                       {messages}
                    </div>
                    <Formulaire addMessage={this.addMessage} pseudo={this.props.params.pseudo} length="140" />
                </div>

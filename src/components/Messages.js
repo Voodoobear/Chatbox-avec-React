@@ -4,7 +4,7 @@ class Messages extends React.Component {
     render() {
         return (
             <p className="user-message">
-                {this.props.pseudo} : mon super message!
+                {this.props.details.pseudo} : {this.props.details.message}
             </p>
         )
     }
