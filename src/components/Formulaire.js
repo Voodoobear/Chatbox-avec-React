@@ -24,7 +24,6 @@ class Formulaire extends React.Component {
 
     compteur = event => {
         const length = this.props.length - this.message.value.length;
-        console.log(length);
         this.setState({ length });
     }
     
@@ -53,6 +52,12 @@ class Formulaire extends React.Component {
             </form>  
         )
     }
+
+    static propTypes = {
+        addMessage: React.PropTypes.func.isRequired,
+        pseudo: React.PropTypes.string.isRequired,
+        length: React.PropTypes.number.isRequired
+    };
 }
 
 
